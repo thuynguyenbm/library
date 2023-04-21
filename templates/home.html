@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your to-do list</title>
+  <link rel="icon" type="image/png" href="static/images/note.png">
+  <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+</head>
+
+<body>
+  <section class="todoapp">
+    <header class="header">
+      <h1>Todo List</h1>
+      <form action="{{ url_for('addNote') }}" method="post">
+        <input class="new-todo" placeholder="Write something needs to be done?" autofocus="" name="description" />
+      </form>
+    </header>
+
+    <section class="main">
+      <ul class="todo-list">
+        {% for note in notes %}
+        <li id={{note.id}}>
+          <div class="view">
+            {% if note.status == 1 %}
+            <input type="checkbox" class="toggle" checked itemId={{note.id}} itemStatus={{note.status}} disabled>
+            {% else %}
+              <input type="checkbox" class="toggle"  itemId={{note.id}} itemStatus={{note.status}} onclick="document.location='/api/done:{{note.id}}'">
+              {% endif %}
+            <label>
+              {{ note.description}}
+              <a class="destroy" href="/api/delete:{{note.id}}"></a>
+            </label>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <footer class="footer"></footer>
+  </section>
+</body>
+</html>
