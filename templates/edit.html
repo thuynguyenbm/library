@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sửa thông tin sách{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Sửa thông tin sách</h1>
+    <form action="{{ url_for('update_book', book_id=book.id) }}" method="POST">
+        <div>
+            <label for="title">Tiêu đề:</label>
+            <input type="text" id="title" name="title" value="{{ book.title }}">
+        </div>
+        <div>
+            <label for="author">Tác giả:</label>
+            <input type="text" id="author" name="author" value="{{ book.author }}">
+        </div>
+        <div>
+            <label for="genre">Thể loại:</label>
+            <select id="genre" name="genre">
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if book.category_id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="date">Ngày xuất bản:</label>
+            <input type="date" id="date" name="date" value="{{ book.date }}">
+        </div>
+        <div>
+            <label for="code">Mã sách:</label>
+            <input type="text" id="code" name="code" value="{{ book.code }}">
+        </div>
+        <div>
+            <label for="amount">Số lượng:</label>
+            <input type="number" id="amount" name="amount" value="{{ book.amount }}">
+        </div>
+        <div>
+            <label for="occupancy">Tỉ lệ lấp đầy:</label>
+            <input type="number" id="occupancy" name="occupancy" value="{{ book.occupancy }}">
+        </div>
+        <button type="submit"  class="btn btn-primary action-btn">Lưu thay đổi</button>
+    </form>
+    </main>
+{% endblock %}

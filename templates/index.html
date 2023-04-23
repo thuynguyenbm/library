@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <h1>Kho sách</h1>
+    <!-- <form method="GET" action="{{ url_for('home') }}">
+        <div class="row mb-3">
+            <div class="col-4">
+                <select class="form-control" name="genre">
+                    <option value="">All Genres</option>
+                    {% for index in range(genreSize) %}
+                    <option value="{{ genre }}">{{ genres[index][0]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control" name="keyword" placeholder="Search ..."
+                    value="{{ request.args.get('search', '') }}">
+            </div>
+            <div class="col-4">
+                <a href="{{url_for('search')}}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </a>
+            </div>
+        </div>
+    </form> -->
+    {% if books %}
+
+    <button class="csv-export">Export</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Shelf No.</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Code</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Occupancy</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index in range(len) %}
+            <tr>
+                <th scope="row">{{ index*page + 1 }}</th>
+                <td>{{ books[index][1] }}</td>
+                <td>{{ books[index][2] }}</td>
+                <td>{{ books[index][3] }}</td>
+                <td>{{ books[index][4] }}</td>
+                <td>{{ books[index][5] }}</td>
+                <td>{{ books[index][6] }}</td>
+                <td>{{ books[index][7] }}</td>
+                <td>{{ books[index][8] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="page-container">
+        <button class="page">{{page}}</button>
+    </div>
+    {% else %}
+    <p>No books found.</p>
+    {% endif %}
+</main>
+
+<footer>
+    <p>Bản quyền thuộc về Thư viện Trường Đại học Hà Nội<br />
+        Địa chỉ: Km 9, đường Nguyễn Trãi, quận Nam Từ Liêm, Hà Nội, Việt Nam.<br />
+        Email: lib@hanu.edu.vn<br />
+        Hotline: 0936.146838
+    <p>&copy; 2023 My HANU book storage</p>
+</footer>
+{% endblock %}
