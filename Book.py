@@ -42,6 +42,15 @@ class Book:
         cursor.execute(sql, val)
         result = cursor.fetchall()
         return result
+    
+    @staticmethod
+    def filter(genre, db):
+        cursor = db.cursor()
+        sql = "SELECT * FROM books WHERE genre = %s"
+        val = (genre,)
+        cursor.execute(sql, val)
+        result = cursor.fetchall()
+        return result
 
     @staticmethod
     def sort(sort_by, db):

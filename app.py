@@ -26,8 +26,7 @@ def home():
     cursor.execute(f"SELECT * FROM books LIMIT {start_index}, {per_page}")
     books = cursor.fetchall()
     cursor.execute(f"SELECT DISTINCT genre FROM books ORDER BY genre asc")
-    genres = cursor.fetchall()    
-    print(len(books))
+    genres = cursor.fetchall()  
     return render_template("index.html", books=books, page=page, len=len(books), genres=genres, genreSize=len(genres))
 
 @app.route("/search")
@@ -42,13 +41,29 @@ def search():
 
 @app.route("/filter")
 def filter():
+    page = int(request.args.get('page', 1))
+    # Tính toán vị trí bắt đầu và kết thúc của danh sách sách trên trang
+    per_page = 10
+    start_index = (page - 1) * per_page
+    end_index = start_index + per_page
     # Lấy thể loại sách từ query string
     genre = request.args.get("genre")
-
-    # Lọc các cuốn sách theo thể loại
-    books = Book.filter(genre, db)
-
-    return render_template("filter.html", genre=genre, books=books)
+    if(genre!="All Genres"):
+        filteredBooks = Book.filter(genre, db)
+        # Lọc các cuốn sách theo thể loại
+        cursor = db.cursor()
+        cursor.execute(f"SELECT DISTINCT genre FROM books ORDER BY genre asc")
+        genres = cursor.fetchall()
+        result= {}
+        result['books']=filteredBooks
+        result['len']=len(filteredBooks)
+        result['genres']=genres
+        result['genreSize']=1
+        result['page']=page
+        return result
+    else:
+        print("))))))))))))))))--)))))))")
+        return redirect(url_for('home'))
 
 @app.route("/sort")
 def sort():
@@ -79,7 +94,7 @@ def add_book():
         # Redirect to the home page after adding the book
         return redirect(url_for('home'))
     else:
-        return render_template('add.html')
+        return render_template('add.html',books=None, page=None, len=0, genres=None, genreSize=0)
     
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
