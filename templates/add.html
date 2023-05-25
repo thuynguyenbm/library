@@ -2,33 +2,41 @@
 
 {% block content %}
 <main>
-  <h2>Add a new book</h2>
-  <form action="{{ url_for('add_book') }}" method="post">
+  <h2>Thêm sách</h2>
+  <form class="add-form" action="{{ url_for('add_book') }}" method="post">
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="id">Code</label>
+      <input type="text" name="id" id="title" class="form-control" required maxlength="15">
+    </div>
+    <div class="form-group">
+      <label for="title">Tên sách</label>
       <input type="text" name="title" id="title" class="form-control" required maxlength="150">
     </div>
     <div class="form-group">
-      <label for="author">Author</label>
+      <label for="author">Tác giả</label>
       <input type="text" name="author" id="author" class="form-control" required maxlength="50">
     </div>
     <div class="form-group">
-      <label for="shelf_id">Shelf ID</label>
-      <input type="number" name="shelf_id" id="shelf_id" class="form-control" required min="1" max="20">
+      <label for="location">Giá sách</label>
+      <input type="text" name="location" id="location" class="form-control" required min="1" max="5">
     </div>
     <div class="form-group">
-      <label for="genre">Genre</label>
+      <label for="genre">Thể loại</label>
       <input type="text" name="genre" id="genre" class="form-control" required maxlength="50">
     </div>
     <div class="form-group">
-      <label for="code">Code</label>
-      <input type="text" name="code" id="code" class="form-control" required minlength="5" maxlength="18">
+      <label for="published_date">Ngày XB</label>
+      <input type="number" name="published_date" id="published_date" class="form-control" required min=1600 max=2050>
     </div>
     <div class="form-group">
-      <label for="amount">Amount</label>
+      <label for="publishing_house">NXB</label>
+      <input type="text" name="publishing_house" id="publishing_house" class="form-control" required minlength="5" maxlength="18">
+    </div>
+    <div class="form-group">
+      <label for="amount">Số lượng</label>
       <input type="number" name="amount" id="amount" class="form-control" required min="1">
     </div>
-    <button type="submit" class="btn btn-primary action-btn">Add Book</button>
+    <button type="submit" class="btn btn-primary action-btn">Thêm</button>
   </form>
 </main>
 {% endblock %}

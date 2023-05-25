@@ -18,14 +18,22 @@
 
 function getFilteredData() {
   const selectElement = document.querySelector("#genre");
+  console.log(selectElement)
+  setTimeout(5000)
   const selectedGenre = selectElement.children[selectElement.selectedIndex].value;
+  console.log(selectedGenre)
   if (selectedGenre) {
-    fetch(`/filter?genre=${selectedGenre}`)
-      .then(response => response.json())
-      .then(
-        data => console.log(data)
-        
-      )
-      .catch(error => console.log(error));
+    url=`/filter?genre=${selectedGenre}`
+    console.log(url)
+    window.location.href = url; 
   }
+}
+
+function askStudentId(){
+  let sId = prompt("Please enter the student id");
+  if (sId != "") {
+    url=`/return/${sId}`
+    window.location.href = url
+  }
+  else window.location.href =  `/1`
 }

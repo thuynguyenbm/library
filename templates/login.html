@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Thư viện</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+  <link rel="icon" type="image/png" href="{{url_for('static', filename='images/icon.png')}}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+</head>
+
+<body>
+    <div class="login-container">
+    <h2>Xin mời đăng nhập</h2>
+    <form class = "login-form" method="POST" action="{{ url_for('login') }}">
+    <label class="login-label" for="username">Tên đăng nhập</label>
+    <input class="login-input" type="text" id="username" name="username" required><br>
+
+    <label class="login-label" for="password">Mật khẩu</label>
+    <input class="login-input" type="password" id="password" name="password" required><br>
+
+    <input class="login-submit" type="submit" value="Đăng nhập">
+</form>
+</div>
+</body>
+
+</html>

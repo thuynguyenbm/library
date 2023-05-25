@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <h1>Kho sách</h1>
+    {% if books %}
+    <form action="{{url_for('borrow_book')}}" method="post">
+    <input type="text" placeholder="Mã sinh viên" name="student_id" value="" required>
+    <button type="submit" class="btn btn-primary action-btn">Xác nhận</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Code</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Tác giả</th>
+                <th scope="col">Thể loại</th>
+                <th scope="col">Số lượng còn lại</th>
+                <th scope="col">Mượn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index in range(len) %}
+            <tr>
+                <th scope="row">{{ index + 1 }}</th>
+                <td>{{ books[index][0] }}</td>
+                <td>{{ books[index][1] }}</td>
+                <td>{{ books[index][2] }}</td>
+                <td>{{ books[index][3] }}</td>
+                <td>{{ books[index][4] }}</td>
+                <td><input type="checkbox" name="books" value="{{ books[index][0] }}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+    {% else %}
+    <p>No books found.</p>
+    {% endif %}
+</main>
+
+{% endblock %}

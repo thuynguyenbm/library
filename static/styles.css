@@ -36,11 +36,14 @@ li.nav-item{
 li:last-child {
   margin-right: 0;
 }
-a {
-  color: #fff;
+a, a:visited, a:hover, a:active {
   text-decoration: none;
 }
-form {
+
+a:visited {
+  text-decoration: none;
+}
+.add-form, .edit-form {
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
@@ -85,4 +88,41 @@ footer {
   padding: 20px 20px;
   bottom: 0;
   width: 100%
+}
+
+.login-form {
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.login-container{
+  text-align: center;
+  width: 1000px;
+  margin: 30px auto;
 }

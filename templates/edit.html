@@ -5,39 +5,50 @@
 {% block content %}
 <main>
     <h1>Sửa thông tin sách</h1>
-    <form action="{{ url_for('update_book', book_id=book.id) }}" method="POST">
+
+    <form class= "edit-form" action="{{ url_for('edit', id = id) }}" method="POST">
+        <div>
         <div>
             <label for="title">Tiêu đề:</label>
-            <input type="text" id="title" name="title" value="{{ book.title }}">
+            <input type="text" id="title" name="title" value=" {{book[0][1]}} ">
         </div>
         <div>
             <label for="author">Tác giả:</label>
-            <input type="text" id="author" name="author" value="{{ book.author }}">
+            <input type="text" id="author" name="author" value=" {{book[0][2]}} ">
+        </div>
+        <div>
+            <label for="location">Tác giả:</label>
+            <input type="text" id="location" name="location" value="{{ book[0][3] }}">
         </div>
         <div>
             <label for="genre">Thể loại:</label>
+            
             <select id="genre" name="genre">
-                {% for category in categories %}
-                    <option value="{{ category.id }}" {% if book.category_id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                {% for genre in genres %}
+                    <option value="{{ genre[0] }}" {% if genre[0] == book[0][4] %}selected{% endif %}>{{ genre[0] }}
+                    </option>
                 {% endfor %}
             </select>
         </div>
+    </div>
+    <div>
         <div>
-            <label for="date">Ngày xuất bản:</label>
-            <input type="date" id="date" name="date" value="{{ book.date }}">
+            <label for="published_date">Ngày xuất bản:</label>
+            <input type="number" id="published_date" name="published_date" value="{{ book[0][5] }}">
         </div>
         <div>
-            <label for="code">Mã sách:</label>
-            <input type="text" id="code" name="code" value="{{ book.code }}">
+            <label for="publishing_house">Mã sách:</label>
+            <input type="text" id="publishing_house" name="publishing_house" value="{{ book[0][6] }}">
         </div>
         <div>
             <label for="amount">Số lượng:</label>
-            <input type="number" id="amount" name="amount" value="{{ book.amount }}">
+            <input type="number" id="amount" name="amount" value="{{ book[0][7] }}">
         </div>
         <div>
-            <label for="occupancy">Tỉ lệ lấp đầy:</label>
-            <input type="number" id="occupancy" name="occupancy" value="{{ book.occupancy }}">
-        </div>
+            <label for="occupancy">Số sách còn lại:</label>
+            <input type="number" id="occupancy" name="occupancy" value="{{ book[0][8] }}">
+        </div>       
+    </div>
         <button type="submit"  class="btn btn-primary action-btn">Lưu thay đổi</button>
     </form>
     </main>

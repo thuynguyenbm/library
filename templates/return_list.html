@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <h2>Danh sách sách vừa trả của sinh viên {{student_name[0]}}({{student_id}})</h2>
+    <table class="table">
+    {% if list %}
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Tác giả</th>
+            <th scope="col">Số lượng đã trả</th>
+            <th scope="col">Ngày mượn</th>
+            <th scope="col">Ngày trả</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for index in range(len) %}
+        <tr>
+            <th scope="row">{{ index + 1 }}</th>
+            <td>{{list[index][0][0]}}</td>
+            <td>{{list[index][0][1]}}</td>
+            <td>{{list[index][0][2]}}</td>
+            <td>{{r_list[index]}}</td>
+            <td>{{b_list[index]}}</td>
+            <td>{{return_date[0]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+{% else %}
+<p>Thao tác trả sách vừa rồi không thành công!</p>
+{% endif %}
+</main>
+
+{% endblock %}

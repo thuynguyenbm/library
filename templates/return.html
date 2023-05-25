@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <h2>Danh sách sách chưa trả của sinh viên {{student_name[0]}}({{student_id}})</h2>
+    <form action="{{url_for('return_book',student_id=student_id)}}" method="post">
+    {% if books %}
+    <button type="submit" class="btn btn-primary action-btn">Xác nhận</button>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Code</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Tác giả</th>
+                <th scope="col">Số lượng chưa trả</th>
+                <th scope="col">Ngày mượn</th>
+                <th scope="col">Hạn trả</th>
+                <th scope="col">Trả</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index in range(len) %}
+            <tr>
+                <th scope="row">{{ index + 1 }}</th>
+                <td>{{books[index][0]}}</td>
+                <td>{{books[index][1]}}</td>
+                <td>{{books[index][2]}}</td>
+                <td>{{books[index][3]}}</td>
+                <td>{{books[index][5]}}</td>
+                <td>{{books[index][6]}}</td>
+                <td><input type="number" name="r_amount" value="" min =0 max = {{books[index][3]}}></td>
+                <td><input hidden type="number" name="books" value="{{books[index][0]}}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+    {% else %}
+    <p>Không còn sách sẵn có để mượn!</p>
+    {% endif %}
+</main>
+
+{% endblock %}
